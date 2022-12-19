@@ -41,10 +41,10 @@ def load_heart_disease_dataframe(save_data = False, print_details = False):
     hungarian_df = pd.read_csv(hungarian, header=None, na_values =["?", -9.0])
 
     #add a column to keep track of the source of the data
-    cleveland_df["Source"] = "cleveland"
-    switzerland_df["Source"] = "switzerland"
-    va_df["Source"] = "va"
-    hungarian_df["Source"] = "hungarian"
+    cleveland_df["source"] = "cleveland"
+    switzerland_df["source"] = "switzerland"
+    va_df["source"] = "va"
+    hungarian_df["source"] = "hungarian"
 
     # add headers to the data frames
     headers = {0 : "age",
@@ -60,7 +60,7 @@ def load_heart_disease_dataframe(save_data = False, print_details = False):
                10 : "slope",
                11 : "ca",
                12 : "thal",
-               13 : "diagnosis"}
+               13 : "target"}
 
     cleveland_df = cleveland_df.rename(columns=headers)
     switzerland_df = switzerland_df.rename(columns=headers)
@@ -68,6 +68,7 @@ def load_heart_disease_dataframe(save_data = False, print_details = False):
     hungarian_df = hungarian_df.rename(columns=headers)
 
     # append the four files into a single dataframe
+    heart_disease_df = []
     heart_disease_df = cleveland_df.append(switzerland_df).append(va_df).append(hungarian_df)
 
 
