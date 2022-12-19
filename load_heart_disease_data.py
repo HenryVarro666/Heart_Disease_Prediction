@@ -81,7 +81,7 @@ def load_heart_disease_dataframe(save_data = False, print_details = False):
         print()
 
     # Save the merged data as a csv
-    if save_data:  heart_disease_df.to_csv(os.path.join(os.getcwd(), "heart_disease_df.csv"))
+    if save_data:  heart_disease_df.to_csv(os.path.join(os.getcwd(), "heart.csv"))
 
 
 if __name__ == '__main__':
