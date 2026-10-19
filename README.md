@@ -24,3 +24,18 @@ Creating Dummy Variables for cp, thal and slope
 Merge Dummy Variables to Main Data Frame 
 drop unnecessary variables
 save to new csv file (processed_data.csv)
+
+<!-- problem-framing:start -->
+
+## Problem and evidence
+
+> **Do standard tabular classifiers outperform a simple baseline on held-out heart-disease records when preprocessing is fitted only on training data and dataset-source differences are respected?**
+
+**Why it matters:** A course-project classifier is useful when its evaluation demonstrates reproducible learning rather than leakage from data preparation or source-specific patterns.
+
+**Central tension:** Combining sources can increase sample size, but source differences and missing-value removal can change the population being evaluated. More complex classifiers need not transfer better.
+
+[Full problem and verification plan](PROBLEM.md) · [Reusable framing prompt](PROBLEM_PROMPT.md)
+
+<!-- problem-framing:end -->
+
