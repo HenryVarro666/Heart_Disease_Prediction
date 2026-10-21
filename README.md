@@ -1,6 +1,40 @@
-# Heart_Disease_Prediction
-603 Term Project
+# Heart Disease Prediction
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/overview-dark.svg">
+    <img src="docs/overview-light.svg" alt="Overview: ROC AUC on a held-out split of 61 patients — SVM 0.97, random forest 0.97, logistic regression 0.96, decision tree 0.95, k-NN 0.89" width="560">
+  </picture>
+</p>
+
+Course 603 term project: predict the presence of heart disease from the four UCI heart-disease
+cohorts (Cleveland, Hungary, Switzerland, VA Long Beach), merged into one table, one-hot encoded and
+split 80:20 (`random_state=4`, 61 held-out patients).
+
+## Results on the held-out split
+
+| Model | ROC AUC | Accuracy |
+|---|---|---|
+| Support vector machine | **0.97** | 0.92 |
+| Random forest | **0.97** | 0.92 |
+| Logistic regression | 0.96 | 0.92 |
+| Decision tree | 0.95 | 0.89 |
+| k-nearest neighbours | 0.89 | 0.87 |
+
+AUC is read from each model's ROC plot (`SVM.png`, `RF.png`, `LR.png`, `DT.png`, `KNN.png`);
+accuracy is computed from the confusion matrices in the same figures. One small split, so treat
+the ranking among the top three as a tie.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `download_data.py` | Download the four UCI files and merge them into one CSV |
+| `Processing_data.ipynb` | Cleaning, type conversion, one-hot encoding → `processed_data.csv` |
+| `Heart_Disease_Prediction.ipynb` | Model training and evaluation (figures above) |
+| `Heart Disease Prediction.pdf` | Project report |
+
+## Original notes
 
 ### download_data.py
 
