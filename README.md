@@ -1,15 +1,22 @@
+<div align="center">
+
 # Heart Disease Prediction
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/overview-dark.svg">
-    <img src="docs/overview-light.svg" alt="Overview: ROC AUC on a held-out split of 61 patients — SVM 0.97, random forest 0.97, logistic regression 0.96, decision tree 0.95, k-NN 0.89" width="560">
-  </picture>
-</p>
+**Five classifiers on the four UCI heart-disease cohorts, compared on one held-out test.**
 
-Course 603 term project: predict the presence of heart disease from the four UCI heart-disease
-cohorts (Cleveland, Hungary, Switzerland, VA Long Beach), merged into one table, one-hot encoded and
-split 80:20 (`random_state=4`, 61 held-out patients).
+![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-5%20models-F7931E?logo=scikitlearn&logoColor=white)
+[![homepage](https://img.shields.io/badge/homepage-ccao2679.com-555555)](https://www.ccao2679.com/coursework/#heart-disease-prediction)
+
+<img src="docs/figures/overview.png" alt="Overview poster: four UCI cohorts, preprocessing, five classifiers; SVM and random forest reach ROC AUC 0.97" width="100%">
+
+</div>
+
+## Highlights
+
+- **Data:** the four UCI heart-disease cohorts (Cleveland, Hungary, Switzerland, VA Long Beach), merged into one table and one-hot encoded.
+- **Models:** logistic regression, k-nearest neighbours, SVM, decision tree and random forest on an 80/20 split (`random_state=4`, 61 held-out patients).
+- **Result:** SVM and random forest reach ROC AUC 0.97; on a split this small, treat the top three as a tie.
 
 ## Results on the held-out split
 
@@ -21,20 +28,33 @@ split 80:20 (`random_state=4`, 61 held-out patients).
 | Decision tree | 0.95 | 0.89 |
 | k-nearest neighbours | 0.89 | 0.87 |
 
-AUC is read from each model's ROC plot (`SVM.png`, `RF.png`, `LR.png`, `DT.png`, `KNN.png`);
-accuracy is computed from the confusion matrices in the same figures. One small split, so treat
-the ranking among the top three as a tie.
+AUC is read from each model's ROC plot; accuracy is computed from the confusion matrix in the same figure.
 
-## Files
+<table>
+<tr><td><img src="SVM.png" alt="SVM: confusion matrix, ROC, learning curve, PR curve"></td><td><img src="RF.png" alt="Random forest: confusion matrix, ROC, learning curve, PR curve"></td></tr>
+<tr><td align="center"><sub>SVM</sub></td><td align="center"><sub>Random forest</sub></td></tr>
+</table>
+
+## Quick start
+
+```bash
+python download_data.py            # fetch and merge the four UCI files
+jupyter notebook Processing_data.ipynb Heart_Disease_Prediction.ipynb
+```
+
+## Repository layout
 
 | File | Purpose |
 |---|---|
 | `download_data.py` | Download the four UCI files and merge them into one CSV |
 | `Processing_data.ipynb` | Cleaning, type conversion, one-hot encoding → `processed_data.csv` |
-| `Heart_Disease_Prediction.ipynb` | Model training and evaluation (figures above) |
-| `Heart Disease Prediction.pdf` | Project report |
+| `Heart_Disease_Prediction.ipynb` | Model training and evaluation |
+| `SVM.png`, `RF.png`, `LR.png`, `DT.png`, `KNN.png` | Per-model evaluation figures |
+| `docs/Heart Disease Prediction.pdf` | Project report |
+| `processed.*.data`, `heart-disease.names` | UCI source files |
 
-## Original notes
+<details>
+<summary>Original notes</summary>
 
 ### download_data.py
 
@@ -58,3 +78,5 @@ Creating Dummy Variables for cp, thal and slope
 Merge Dummy Variables to Main Data Frame 
 drop unnecessary variables
 save to new csv file (processed_data.csv)
+
+</details>
