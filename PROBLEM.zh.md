@@ -6,7 +6,7 @@
 
 **核心矛盾：** 合并多个来源可以扩大样本量，但来源差异和删除缺失值都可能改变被评估的人群。更复杂的分类器未必迁移得更好。
 
-**已有证据与缺口：** [README.md](README.md) 介绍了合并 UCI 数据表、删除缺失行和类别编码。这些并不能证明模型在考虑来源差异后仍能泛化，也不能证明其临床价值。[Processing_data.ipynb](Processing_data.ipynb) 和 [Heart_Disease_Prediction.ipynb](Heart_Disease_Prediction.ipynb) 是文档中记录的分析入口。
+**已有证据与缺口：** [README.md](README.md) 说明了当前流程：notebook 在 303 行的 Cleveland 数据表（`Data.csv`）上训练，并在划分之前拟合缩放器；`download_data.py` 合并出的四队列数据没有被使用。这些并不能证明模型在考虑来源差异后仍能泛化，也不能证明其临床价值。[Processing_data.ipynb](Processing_data.ipynb) 和 [Heart_Disease_Prediction.ipynb](Heart_Disease_Prediction.ipynb) 是文档中记录的分析入口。
 
 **决定性验证：** 划分数据之前先检查重复记录和标签定义。缺失值填补和编码只在各训练折内拟合；在同一个未动用的测试集上，把简单的多数类/逻辑回归基线与候选分类器对比，条件允许时再做按来源留出的评估。报告区分度、校准度、各类别的错误以及被排除的样本。若控制泄漏后提升消失，就把这一点作为主要的学习结论。
 

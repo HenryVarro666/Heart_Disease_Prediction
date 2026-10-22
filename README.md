@@ -4,13 +4,13 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-**Five classifiers on the four UCI heart-disease cohorts, compared on one held-out test.**
+**Five classifiers on the UCI Cleveland heart-disease data, compared on one held-out test.**
 
 ![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-5%20models-F7931E?logo=scikitlearn&logoColor=white)
 [![homepage](https://img.shields.io/badge/homepage-ccao2679.com-555555)](https://www.ccao2679.com/projects/#heart-disease-prediction)
 
-<img src="docs/figures/overview.png" alt="Overview poster: four UCI cohorts, preprocessing, five classifiers; SVM and random forest reach ROC AUC 0.97" width="100%">
+<img src="docs/figures/overview.png" alt="Overview poster: Cleveland data (303 patients), preprocessing, five classifiers; SVM and random forest reach ROC AUC 0.97" width="100%">
 
 </div>
 
@@ -30,7 +30,7 @@
 
 ## Highlights
 
-- **Data:** the four UCI heart-disease cohorts (Cleveland, Hungary, Switzerland, VA Long Beach), merged into one table and one-hot encoded.
+- **Data:** `Data.csv`, a recoded copy of the 303-patient UCI Cleveland cohort, with `cp`, `thal` and `slope` one-hot encoded. `download_data.py` also fetches all four UCI cohorts (Cleveland, Hungary, Switzerland, VA Long Beach) into `RawHeartDiseaseData.csv` (920 rows), but the notebooks do not read that file.
 - **Models:** logistic regression, k-nearest neighbours, SVM, decision tree and random forest on an 80/20 split (`random_state=4`, 61 held-out patients).
 - **Result:** SVM and random forest reach ROC AUC 0.97; on a split this small, treat the top three as a tie.
 
@@ -68,7 +68,7 @@ Arrows follow the files each step reads and writes; all five models share one sp
 | Decision tree | 0.95 | 0.89 |
 | k-nearest neighbours | 0.89 | 0.87 |
 
-AUC is read from each model's ROC plot; accuracy is computed from the confusion matrix in the same figure.
+AUC is read from each model's ROC plot; accuracy is computed from the confusion matrix in the same figure. The notebook fits `MinMaxScaler` on all 303 rows before the split, so test-set statistics leak into the scaling. In `Data.csv`, `target = 1` marks the records that UCI codes as no disease (`num = 0`), so the single-patient example at the end of the notebook prints the opposite label.
 
 <table>
 <tr><td><img src="SVM.png" alt="SVM: confusion matrix, ROC, learning curve, PR curve"></td><td><img src="RF.png" alt="Random forest: confusion matrix, ROC, learning curve, PR curve"></td></tr>
@@ -78,16 +78,17 @@ AUC is read from each model's ROC plot; accuracy is computed from the confusion 
 ## Quick start
 
 ```bash
-python download_data.py            # fetch and merge the four UCI files
-jupyter notebook Processing_data.ipynb Heart_Disease_Prediction.ipynb
+jupyter notebook Processing_data.ipynb Heart_Disease_Prediction.ipynb   # reads Data.csv
+python download_data.py   # optional: merges the four UCI files into RawHeartDiseaseData.csv
 ```
 
 ## Repository layout
 
 | File | Purpose |
 |---|---|
-| `download_data.py` | Download the four UCI files and merge them into one CSV |
-| `Processing_data.ipynb` | Cleaning, type conversion, one-hot encoding → `processed_data.csv` |
+| `Data.csv` | Recoded Cleveland data (303 rows) that the notebooks train on |
+| `download_data.py` | Download the four UCI files and merge them into `RawHeartDiseaseData.csv` (not read by the notebooks) |
+| `Processing_data.ipynb` | Reads `Data.csv`; type conversion, one-hot encoding → `processed_data.csv` |
 | `Heart_Disease_Prediction.ipynb` | Model training and evaluation |
 | `SVM.png`, `RF.png`, `LR.png`, `DT.png`, `KNN.png` | Per-model evaluation figures |
 | `docs/Heart Disease Prediction.pdf` | Project report |

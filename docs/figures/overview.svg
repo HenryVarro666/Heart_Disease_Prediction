@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc"><title id="title">HEART DISEASE PREDICTION</title><desc id="desc">Five models, one held-out test. Predicting heart disease from the four UCI heart-disease cohorts.</desc><defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#F7F9FC"/><stop offset="1" stop-color="#EFF3F7"/></linearGradient></defs><rect width="1600" height="960" fill="url(#paper)"/><g font-family="Inter, 'Segoe UI', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc"><title id="title">HEART DISEASE PREDICTION</title><desc id="desc">Five models, one held-out test. Predicting heart disease from the UCI Cleveland cohort (303 patients).</desc><defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#F7F9FC"/><stop offset="1" stop-color="#EFF3F7"/></linearGradient></defs><rect width="1600" height="960" fill="url(#paper)"/><g font-family="Inter, 'Segoe UI', Arial, sans-serif">
 <rect x="0" y="0" width="1600" height="9" rx="0" fill="#56688A" stroke="none"/>
 <text x="64" y="66" font-size="20" fill="#172837" font-weight="700" letter-spacing="2" data-maxx="900">HEART DISEASE PREDICTION</text>
 <text x="1536" y="66" font-size="16" fill="#56688A" font-weight="600" letter-spacing="1" text-anchor="end">COURSE PROJECT / DATA 603</text>
 <text x="60" y="167" font-size="72" fill="#142638" font-weight="500" data-maxx="1540">Five models, one held-out test.</text>
-<text x="64" y="221" font-size="27" fill="#344C5F" font-weight="400" data-maxx="1536">Predicting heart disease from the four UCI heart-disease cohorts.</text>
-<text x="64" y="262" font-size="20" fill="#697988" font-weight="400" data-maxx="1536">Cleveland, Hungary, Switzerland and VA Long Beach, merged and one-hot encoded.</text>
+<text x="64" y="221" font-size="27" fill="#344C5F" font-weight="400" data-maxx="1536">Predicting heart disease from the UCI Cleveland cohort (303 patients).</text>
+<text x="64" y="262" font-size="20" fill="#697988" font-weight="400" data-maxx="1536">Data.csv, a recoded Cleveland table; the four-cohort merge is downloaded but not used.</text>
 <rect x="64" y="323" width="344" height="272" rx="20" fill="#FFFFFF" stroke="#DCE4EB"/>
 <rect x="88" y="349" width="44" height="5" rx="2" fill="#56688A" stroke="none"/>
-<text x="88" y="393" font-size="17" fill="#56688A" font-weight="700" letter-spacing="1.4" data-maxx="394">01 / DOWNLOAD</text>
-<text x="88" y="441" font-size="28" fill="#172C3C" font-weight="600" data-maxx="394">Four cohorts</text>
-<text x="88" y="485" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">UCI heart-disease files</text>
-<text x="88" y="517" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">Merged with headers</text>
-<text x="88" y="549" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">One CSV</text>
+<text x="88" y="393" font-size="17" fill="#56688A" font-weight="700" letter-spacing="1.4" data-maxx="394">01 / DATA</text>
+<text x="88" y="441" font-size="28" fill="#172C3C" font-weight="600" data-maxx="394">Cleveland table</text>
+<text x="88" y="485" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">Data.csv, 303 rows</text>
+<text x="88" y="517" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">Recoded UCI Cleveland</text>
+<text x="88" y="549" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="394">Four-cohort merge unused</text>
 <path d="M416 458h16m-6-6 6 6-6 6" fill="none" stroke="#56688A" stroke-width="2"/>
 <rect x="440" y="323" width="344" height="272" rx="20" fill="#FFFFFF" stroke="#DCE4EB"/>
 <rect x="464" y="349" width="44" height="5" rx="2" fill="#56688A" stroke="none"/>
 <text x="464" y="393" font-size="17" fill="#56688A" font-weight="700" letter-spacing="1.4" data-maxx="770">02 / CLEAN</text>
 <text x="464" y="441" font-size="28" fill="#172C3C" font-weight="600" data-maxx="770">Preprocess</text>
-<text x="464" y="485" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">Drop rows with gaps</text>
-<text x="464" y="517" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">Cast column types</text>
-<text x="464" y="549" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">One-hot cp, thal, slope</text>
+<text x="464" y="485" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">Cast column types</text>
+<text x="464" y="517" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">One-hot cp, thal, slope</text>
+<text x="464" y="549" font-size="18" fill="#5C6D7B" font-weight="400" data-maxx="770">Min-max scaled before split</text>
 <path d="M792 458h16m-6-6 6 6-6 6" fill="none" stroke="#56688A" stroke-width="2"/>
 <rect x="816" y="323" width="344" height="272" rx="20" fill="#FFFFFF" stroke="#DCE4EB"/>
 <rect x="840" y="349" width="44" height="5" rx="2" fill="#56688A" stroke="none"/>
@@ -49,8 +49,8 @@
 <rect x="1066" y="635" width="470" height="211" rx="18" fill="#E8EDF3" stroke="none"/>
 <text x="1090" y="675" font-size="15" fill="#56688A" font-weight="700" letter-spacing="1.2" data-maxx="1518">CAVEAT</text>
 <text x="1090" y="722" font-size="24" fill="#193346" font-weight="600" data-maxx="1518">One small split</text>
-<text x="1090" y="765" font-size="18" fill="#536777" font-weight="400" data-maxx="1518">Treat the top three as a tie;</text>
-<text x="1090" y="795" font-size="18" fill="#536777" font-weight="400" data-maxx="1518">no cross-validated ranking.</text>
+<text x="1090" y="765" font-size="18" fill="#536777" font-weight="400" data-maxx="1518">Scaler fitted before the split;</text>
+<text x="1090" y="795" font-size="18" fill="#536777" font-weight="400" data-maxx="1518">treat the top three as a tie.</text>
 <path d="M64 888h1472" stroke="#CED9E3"/>
 <text x="64" y="923" font-size="17" fill="#647788" font-weight="400" data-maxx="1536">JUPYTER  /  scikit-learn · yellowbrick. The project report is Heart Disease Prediction.pdf.</text>
 </g></svg>

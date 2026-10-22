@@ -4,13 +4,13 @@
 
 [English](README.md) · **简体中文**
 
-**在四个 UCI 心脏病队列上训练五种分类器，并在同一个留出测试集上比较。**
+**在 UCI Cleveland 心脏病数据上训练五种分类器，并在同一个留出测试集上比较。**
 
 ![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-5%20models-F7931E?logo=scikitlearn&logoColor=white)
 [![homepage](https://img.shields.io/badge/homepage-ccao2679.com-555555)](https://www.ccao2679.com/projects/#heart-disease-prediction)
 
-<img src="docs/figures/overview.png" alt="项目概览海报：四个 UCI 队列、预处理、五种分类器；SVM 和随机森林的 ROC AUC 达到 0.97" width="100%">
+<img src="docs/figures/overview.png" alt="项目概览海报：Cleveland 数据（303 名患者）、预处理、五种分类器；SVM 和随机森林的 ROC AUC 达到 0.97" width="100%">
 
 </div>
 
@@ -30,7 +30,7 @@
 
 ## 亮点
 
-- **数据：** UCI 的四个心脏病队列（Cleveland、Hungary、Switzerland、VA Long Beach），合并成一张表并做 one-hot 编码。
+- **数据：** `Data.csv`，即 303 名患者的 UCI Cleveland 队列经过重新编码的版本，对 `cp`、`thal`、`slope` 做 one-hot 编码。`download_data.py` 还会下载 UCI 的全部四个队列（Cleveland、Hungary、Switzerland、VA Long Beach）并合并为 `RawHeartDiseaseData.csv`（920 行），但两个 notebook 都不读取这个文件。
 - **模型：** 逻辑回归、k 近邻、SVM、决策树和随机森林，使用 80/20 划分（`random_state=4`，留出 61 名患者）。
 - **结果：** SVM 和随机森林的 ROC AUC 达到 0.97；测试集这么小，前三名应视为打平。
 
@@ -68,7 +68,7 @@ flowchart TD
 | 决策树 | 0.95 | 0.89 |
 | k 近邻 | 0.89 | 0.87 |
 
-AUC 读自各模型的 ROC 曲线图；Accuracy 由同一张图中的混淆矩阵算出。
+AUC 读自各模型的 ROC 曲线图；Accuracy 由同一张图中的混淆矩阵算出。notebook 在划分之前用全部 303 行拟合 `MinMaxScaler`，测试集的统计量因此泄漏进了缩放步骤。另外，`Data.csv` 中 `target = 1` 对应 UCI 编码里无心脏病（`num = 0`）的记录，所以 notebook 末尾的单病例示例输出的标签恰好相反。
 
 <table>
 <tr><td><img src="SVM.png" alt="SVM：混淆矩阵、ROC、学习曲线、PR 曲线"></td><td><img src="RF.png" alt="随机森林：混淆矩阵、ROC、学习曲线、PR 曲线"></td></tr>
@@ -78,16 +78,17 @@ AUC 读自各模型的 ROC 曲线图；Accuracy 由同一张图中的混淆矩�
 ## 快速开始
 
 ```bash
-python download_data.py            # fetch and merge the four UCI files
-jupyter notebook Processing_data.ipynb Heart_Disease_Prediction.ipynb
+jupyter notebook Processing_data.ipynb Heart_Disease_Prediction.ipynb   # reads Data.csv
+python download_data.py   # optional: merges the four UCI files into RawHeartDiseaseData.csv
 ```
 
 ## 目录结构
 
 | 文件 | 用途 |
 |---|---|
-| `download_data.py` | 下载四个 UCI 文件并合并成一个 CSV |
-| `Processing_data.ipynb` | 清洗、类型转换、one-hot 编码 → `processed_data.csv` |
+| `Data.csv` | notebook 训练所用的重新编码版 Cleveland 数据（303 行） |
+| `download_data.py` | 下载四个 UCI 文件并合并为 `RawHeartDiseaseData.csv`（notebook 不读取） |
+| `Processing_data.ipynb` | 读取 `Data.csv`；类型转换、one-hot 编码 → `processed_data.csv` |
 | `Heart_Disease_Prediction.ipynb` | 模型训练与评估 |
 | `SVM.png`, `RF.png`, `LR.png`, `DT.png`, `KNN.png` | 各模型的评估图 |
 | `docs/Heart Disease Prediction.pdf` | 项目报告 |
