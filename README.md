@@ -6,7 +6,7 @@
 
 ![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-5%20models-F7931E?logo=scikitlearn&logoColor=white)
-[![homepage](https://img.shields.io/badge/homepage-ccao2679.com-555555)](https://www.ccao2679.com/coursework/#heart-disease-prediction)
+[![homepage](https://img.shields.io/badge/homepage-ccao2679.com-555555)](https://www.ccao2679.com/projects/#heart-disease-prediction)
 
 <img src="docs/figures/overview.png" alt="Overview poster: four UCI cohorts, preprocessing, five classifiers; SVM and random forest reach ROC AUC 0.97" width="100%">
 
