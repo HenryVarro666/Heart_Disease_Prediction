@@ -2,6 +2,8 @@
 
 # Heart Disease Prediction
 
+**English** · [简体中文](README.zh-CN.md)
+
 **Five classifiers on the four UCI heart-disease cohorts, compared on one held-out test.**
 
 ![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)
@@ -22,7 +24,7 @@
 
 **Central tension:** Combining sources can increase sample size, but source differences and missing-value removal can change the population being evaluated. More complex classifiers need not transfer better.
 
-[Full problem and verification plan](PROBLEM.md)
+[Full problem and verification plan](PROBLEM.md) · [中文](PROBLEM.zh.md)
 
 <!-- problem-framing:end -->
 
@@ -31,6 +33,30 @@
 - **Data:** the four UCI heart-disease cohorts (Cleveland, Hungary, Switzerland, VA Long Beach), merged into one table and one-hot encoded.
 - **Models:** logistic regression, k-nearest neighbours, SVM, decision tree and random forest on an 80/20 split (`random_state=4`, 61 held-out patients).
 - **Result:** SVM and random forest reach ROC AUC 0.97; on a split this small, treat the top three as a tie.
+
+## Architecture
+
+```mermaid
+flowchart TD
+    DL["download_data.py<br/>fetch 4 UCI cohorts"] --> RAW["RawHeartDiseaseData.csv<br/>920 rows"]
+    DATA["Data.csv<br/>303 rows"] --> PRE["Processing_data.ipynb<br/>dropna, one-hot encode"]
+    PRE --> PROC["processed_data.csv"]
+    PROC --> SCALE["Heart_Disease_Prediction.ipynb<br/>MinMaxScaler, all rows"]
+    SCALE --> SPLIT["train_test_split<br/>80/20, random_state=4"]
+    SPLIT --> LR["LogisticRegression<br/>L1"]
+    SPLIT --> KNN["KNeighbors<br/>k=3"]
+    SPLIT --> SVM["SVC<br/>linear, C=10"]
+    SPLIT --> DT["DecisionTree<br/>max_depth=3"]
+    SPLIT --> RF["RandomForest<br/>1000 trees"]
+    LR --> EVAL["yellowbrick, 61 test rows<br/>confusion, ROC AUC, PR"]
+    KNN --> EVAL
+    SVM --> EVAL
+    DT --> EVAL
+    RF --> EVAL
+    EVAL --> PNG["LR.png ... RF.png<br/>per-model figures"]
+```
+
+Arrows follow the files each step reads and writes; all five models share one split and are scored on the same 61 held-out rows.
 
 ## Results on the held-out split
 

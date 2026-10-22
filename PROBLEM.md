@@ -11,3 +11,5 @@
 **Decisive verification:** Audit duplicates and label definitions before splitting. Fit imputation and encoding within each training fold; compare a simple majority/logistic baseline with candidate classifiers using a common untouched test set and, where viable, source-held-out evaluation. Report discrimination, calibration, class-specific errors and exclusions. If improvement disappears after leakage controls, treat that as the main learning result.
 
 This is a retrospective methods exercise and prospective verification plan, not a medical decision tool.
+
+中文版：[PROBLEM.zh.md](PROBLEM.zh.md)
